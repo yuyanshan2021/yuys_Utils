@@ -157,13 +157,25 @@ public class ObjectAndStringUtils {
             } else if (tokenMap.containsKey(c) && Objects.equals(stack.peek(), tokenMap.get(c))) {
                 stack.pop();
             } else if ((c == ',') && stack.isEmpty()) {
-                return toString.substring(0, i);
+                //return toString.substring(0, i);
+                String rtnStr = toString.substring(0, i);
+                String myStr = StringUtils.removeStart(toString,rtnStr+",");
+                if(checkStringHasEqualsSign(myStr)){
+                    myStr = StringUtils.substringBefore(myStr,"=");
+                    rtnStr = rtnStr+(StringUtils.isNotEmpty(myStr) && myStr.contains(",") ? ","+StringUtils.substringBeforeLast(myStr,",") : "");
+                }else return  toString;
+                return rtnStr;
+
             }
         }
         if (stack.isEmpty()) {
             return toString;
         }
         throw new RuntimeException("splitFirstToken error, bracketNum=" + bracketNum + ", toString=" + toString);
+    }
+
+    private static boolean checkStringHasEqualsSign(String myStr) {
+        return StringUtils.isNotEmpty(myStr) && myStr.contains("=");
     }
 
     /**

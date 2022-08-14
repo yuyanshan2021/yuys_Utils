@@ -12,7 +12,7 @@ public class ToStringUtilsTest {
     public static void main(String[] args) throws ParseException {
         Map<String,Object> stringObjectMap = Maps.newHashMap();
         List<Object> stringList = new ArrayList<>();
-        stringList.add("aaaaaaaaaaaaaaaa");
+        stringList.add("aa,aaa,aaaaa,aa,aaaa");
         stringList.add("bbbbbbbbbbbbbbbb");
         stringList.add("cccccccccccccccc");
         Map<String,Object> twoMap = Maps.newHashMap();
